@@ -35,7 +35,7 @@ public class SponsorRepo {
             query.limit(500);
             query.orderByAscending("createdAt");
 
-            query.findInBackground().subscribe(new Observer<>() {
+            query.findInBackground().subscribe(new Observer<List<LCObject>>() {
                 public void onSubscribe(@NotNull Disposable disposable) {
                 }
 

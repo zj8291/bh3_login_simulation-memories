@@ -24,7 +24,7 @@ public class SponsorAdapter extends PagingDataAdapter<SponsorData, SponsorAdapte
     private final Activity activity;
 
     public SponsorAdapter(Activity activity) {
-        super(new DiffUtil.ItemCallback<>() {
+        super(new DiffUtil.ItemCallback<SponsorData>() {
             @Override
             public boolean areItemsTheSame(@NonNull SponsorData oldItem, @NonNull SponsorData newItem) {
                 return oldItem.getId() == newItem.getId();
