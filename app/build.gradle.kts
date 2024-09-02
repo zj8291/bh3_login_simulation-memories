@@ -31,31 +31,32 @@ android {
         disable.add("RestrictedApi")
     }
 
-    signingConfigs {
-        if (!System.getenv("CI").toBoolean()) {
+//    signingConfigs {
+//        if (!System.getenv("CI").toBoolean()) {
+//
+//            create("debugSign") {
+//
+//                val properties = Properties()
+//
+//                val keystorePropertiesFile = rootProject.file("local.properties")
+//                storeFile = file(System.getenv("KEYSTORE") ?: "keystore.jks")
+//                properties.load(FileInputStream(keystorePropertiesFile))
+//
+//                storePassword = properties.getProperty("sign.pwn")
+//                keyAlias = properties.getProperty("sign.keyAlias")
+//                keyPassword = properties.getProperty("sign.pwn")
+//
+//            }
+//        }
+//
+//        create("releaseSign") {
+//            storeFile = file(System.getenv("KEYSTORE") ?: "keystore.jks")
+//            storePassword = System.getenv("KEYSTORE_PASSWORD")
+//            keyAlias = System.getenv("KEY_ALIAS")
+//            keyPassword = System.getenv("KEY_PASSWORD")
+//        }
+//    }
 
-            create("debugSign") {
-
-                val properties = Properties()
-
-                val keystorePropertiesFile = rootProject.file("local.properties")
-                storeFile = file(System.getenv("KEYSTORE") ?: "keystore.jks")
-                properties.load(FileInputStream(keystorePropertiesFile))
-
-                storePassword = properties.getProperty("sign.pwn")
-                keyAlias = properties.getProperty("sign.keyAlias")
-                keyPassword = properties.getProperty("sign.pwn")
-
-            }
-        }
-
-        create("releaseSign") {
-            storeFile = file(System.getenv("KEYSTORE") ?: "keystore.jks")
-            storePassword = System.getenv("KEYSTORE_PASSWORD")
-            keyAlias = System.getenv("KEY_ALIAS")
-            keyPassword = System.getenv("KEY_PASSWORD")
-        }
-    }
     compileSdk = 33
     buildToolsVersion = "33.0.1"
 
@@ -68,7 +69,7 @@ android {
         // versionCode = System.currentTimeMillis().toString().substring(7, 12).toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
-        signingConfig = signingConfigs.getByName("releaseSign")
+//        signingConfig = signingConfigs.getByName("releaseSign")
     }
 
     buildFeatures {
@@ -95,7 +96,7 @@ android {
             isMinifyEnabled = false
             isShrinkResources = false
             if (System.getenv("CI") == null) {
-                signingConfig = signingConfigs.getByName("debugSign")
+//                signingConfig = signingConfigs.getByName("debugSign")
             }
 
             proguardFiles(
